@@ -1,0 +1,13 @@
+#Instalar Nginx na distro AWS
+- name: Install nginx 1.18
+  command: amazon-linux-extras install nginx1.18
+  
+#Instalar Nginx na distro CentOS
+- name: Install nginx 1.18
+  command: yum install nginx1.18
+
+- name: Upload default index.php for host
+  copy: src=files/index.php dest="/var/www/{{ domain }}" mode=0644
+
+- name: Start Nginx
+  service: name=nginx enabled=yes state=started
